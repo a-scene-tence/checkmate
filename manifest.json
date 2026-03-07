@@ -1,7 +1,7 @@
 {
   "name": "체크메이트",
   "short_name": "체크메이트",
-  "description": "개인 & 공동 가계부",
+  "description": "여유자금 모니터링 가계부",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -26,5 +26,6 @@
       "sizes": "180x180",
       "type": "image/png"
     }
-  ]
+  ],
+  "splash_pages": null
 }

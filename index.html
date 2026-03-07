@@ -278,6 +278,30 @@ details[open].detail-box summary::after { content: " ▲"; }
 </style>
 </head>
 <body>
+
+<!-- ═══ SPLASH SCREEN ═══ -->
+<div id="splash-screen" style="
+  position:fixed;inset:0;z-index:9999;
+  background:#ffffff;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:24px;
+  transition:opacity 0.4s ease;
+">
+  <img src="icon-512.png" style="width:140px;height:140px;border-radius:32px;" alt="체크메이트">
+  <span style="font-family:'NanumSquareNeo',-apple-system,sans-serif;font-size:22px;font-weight:800;color:#191F28;letter-spacing:-.5px;">체크메이트</span>
+</div>
+<script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const s = document.getElementById('splash-screen');
+      if (s) {
+        s.style.opacity = '0';
+        setTimeout(() => s.remove(), 400);
+      }
+    }, 800);
+  });
+</script>
 <div class="app">
 <header>
   <div class="htop">
