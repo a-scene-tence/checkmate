@@ -761,6 +761,34 @@ details[open].detail-box summary::after { content: " ▲"; }
       <button onclick="document.getElementById('mo-wizard').classList.remove('open')" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:22px;padding:0;line-height:1;">‹</button>
     </div>
 
+    <div id="wiz-step-0">
+      <div style="margin-bottom:20px;"><img src="icon-192.png" style="width:72px;height:72px;border-radius:18px;"></div>
+      <h3 style="margin-bottom:6px;font-size:18px;">체크메이트에 오신 걸 환영해요!</h3>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.6;">시작 전에 데이터 저장 방식을 꼭 확인해 주세요.</p>
+
+      <div style="background:var(--s2);border-radius:14px;padding:16px;margin-bottom:12px;font-size:13px;line-height:1.7;color:var(--text);">
+        <div style="font-weight:800;margin-bottom:8px;">📱 기기에만 저장돼요</div>
+        모든 데이터는 <b>이 기기의 앱 내부</b>에만 저장됩니다.<br>
+        별도 계정·서버·클라우드가 없어서 다른 기기에서는 볼 수 없어요.
+      </div>
+
+      <div style="background:#FFF5E5;border-radius:14px;padding:16px;margin-bottom:12px;font-size:13px;line-height:1.7;color:var(--text);">
+        <div style="font-weight:800;margin-bottom:8px;">⚠️ 이럴 때 데이터가 지워질 수 있어요</div>
+        <span style="color:var(--danger);">·</span> 브라우저 캐시·사이트 데이터 삭제<br>
+        <span style="color:var(--danger);">·</span> 앱(브라우저) 삭제 후 재설치<br>
+        <span style="color:var(--danger);">·</span> 휴대폰 초기화
+      </div>
+
+      <div style="background:#E8F3FF;border-radius:14px;padding:16px;margin-bottom:24px;font-size:13px;line-height:1.7;color:var(--text);">
+        <div style="font-weight:800;margin-bottom:8px;">💾 JSON 백업으로 지키세요</div>
+        설정 탭 → <b>데이터 백업/복원</b>에서 JSON 파일로 내보낼 수 있어요.<br>
+        이 파일을 갤러리·드라이브 등에 보관해 두면<br>
+        언제든 <b>복원</b>할 수 있습니다. <b>정기적인 백업을 권장해요.</b>
+      </div>
+
+      <button class="bsub" onclick="nextWizard(1)">확인했어요, 시작하기</button>
+    </div>
+
     <div id="wiz-step-1">
       <div style="margin-bottom:16px;"><img src="icon-192.png" style="width:72px;height:72px;border-radius:18px;"></div>
       <h3 style="margin-bottom:8px; font-size:18px;">1단계: 나의 현재 잔고</h3>
@@ -2822,15 +2850,16 @@ function openWizard() {
   document.getElementById('wiz-p-cash').value = fmt4(ms.pCashBal);
   document.getElementById('wiz-p-card').value = fmt4(ms.pPrevCard);
   document.getElementById('wiz-j-acc').value  = fmt4(ms.jBal);
-  nextWizard(1);
+  nextWizard(0);
   document.getElementById('mo-wizard').classList.add('open');
   setTimeout(initGenComma, 50);
 }
 
 function nextWizard(step) {
-  [1,2,3].forEach(i =>
-    document.getElementById(`wiz-step-${i}`).style.display = i===step ? 'block' : 'none'
-  );
+  [0,1,2,3].forEach(i => {
+    const el = document.getElementById(`wiz-step-${i}`);
+    if(el) el.style.display = i===step ? 'block' : 'none';
+  });
 }
 
 function finishWizard() {
